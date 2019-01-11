@@ -15,7 +15,7 @@ class ImageModule extends Module
 
     public $page = null;
 
-    /*
+    ///*
     public function varGetOne(Variable $variable)
     {
         $link = DB::table('item_variable')
@@ -53,5 +53,5 @@ class ImageModule extends Module
         }
         return $item;
     }
-    */
+    //*/
 }

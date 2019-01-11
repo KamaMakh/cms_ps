@@ -10,6 +10,9 @@ const Dashboard = () => import('@/views/Dashboard')
 const SitesList = () => import('@/views/sites/SitesList')
 const SiteInfo = () => import('@/views/sites/SiteInfo')
 const SiteMenus = () => import('@/views/sites/SiteMenus')
+
+const SiteImages = () => import('@/views/sites/SiteImages')
+
 const DesignsList = () => import('@/views/designs/DesignsList')
 const DesignEdit = () => import('@/views/designs/DesignEdit')
 const TemplatesList = () => import('@/views/templates/TemplatesList')
@@ -354,6 +357,12 @@ export default new Router({
           path: 'menus/:menuId',
           name: 'SiteMenus',
           component: SiteMenus,
+          props: true
+        },
+        {
+          path: 'images',
+          name: 'SiteImages',
+          component: SiteImages,
           props: true
         }
       ]

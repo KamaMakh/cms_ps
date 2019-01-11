@@ -6,8 +6,10 @@ use App\Modules\Catalog\Models\Catalog;
 use App\Modules\Catalog\Models\Folder;
 use App\Modules\Catalog\Models\Param;
 use App\Modules\Catalog\Models\Product;
+use App\Modules\Catalog\Models\Vendor;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class Tester extends Command
 {
@@ -50,10 +52,13 @@ class Tester extends Command
 
         if ($handle) {
             $header = fgetcsv($handle, 0, ';');
-            var_dump($handle);
+            //var_dump($handle);
             while (($data = fgetcsv($handle, 0, ';')) !== false) {
                 $row = array_map( array(self::class,'convert'), $data );
                 $info = array_combine($header, $row);
+
+                info($info);
+                return;
 
                 $product = Product::where('provider_id', '=', $info['id'])->first();
                 if (!$product) {
@@ -125,6 +130,11 @@ class Tester extends Command
     private function setPictures($product, $img)
     {
 
+        //$url = $img;
+        //$contents = file_get_contents($url);
+        //$name = substr($url, strrpos($url, '/') + 1);
+        //Storage::put($name, $contents);
+
     }
 
     private function setParams($product, $pars)
@@ -152,6 +162,23 @@ class Tester extends Command
 
     private function setVendor($product, $v)
     {
+
+        $vendor = Vendor::where('catalog_id', '=', $product->catalog_id)->where('name', '=', $v);
+
+        $vendor = $vendor->first();
+
+        if (!$vendor) {
+            $vendor = new Vendor();
+            $vendor->catalog_id = $product->catalog_id;
+        }
+        $order = Vendor::where('catalog_id', '=', $product->catalog_id);
+
+        $vendor->order = $order->count();
+        $vendor->source_id = $product->source_id;
+        $vendor->name = $v;
+        $vendor->url = $v;
+
+        $vendor->save();
 
     }
 }

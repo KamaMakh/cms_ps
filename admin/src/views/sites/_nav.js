@@ -13,6 +13,11 @@ export default {
       name: 'Menus',
       url: '',
       icon: 'icon-speedometer'
+    },
+    {
+      name: 'Images',
+      url: '/images',
+      icon: 'icon-speedometer'
     }
   ]
 }

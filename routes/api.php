@@ -36,6 +36,13 @@ Route::namespace('API')->group(function () {
             Route::put('menus/{menu}/pages/{page}', 'MenuController@pageUpdate');
             Route::delete('menus/{menu}/pages/{page}', 'MenuController@pageDelete');
 
+            /* Site images */
+            Route::get('images', 'ImageController@index');
+            //Route::get('images/{image}', 'ImageController@show');
+            Route::post('images', 'ImageController@store');
+            //Route::put('images/{image}', 'ImageController@update');
+            //Route::delete('menus/{image}', 'ImageController@delete');
+
             /* Site menus -> pages -> vars */
             Route::get('menus/{menu}/pages/{page}/variables', 'MenuController@pageVariables');
             Route::get('menus/{menu}/pages/{page}/variables/{variable}', 'MenuController@pageVariableShow');

@@ -2,7 +2,7 @@
   <div class="animated fadeIn page-design-edit">
     <div class="template">
       <div class="info">
-      <span class="design-name">
+      <span class="design-name 88">
         {{ design.id }}: {{ design.name }}
       </span>
         <span class="buttons">
